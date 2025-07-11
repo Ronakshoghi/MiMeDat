@@ -648,37 +648,37 @@
           "description": "List of equivalent stress values throughout the simulation.",
           "property": "Stress"
         },
-        "S11": {
+        "stress_11": {
           "type": "array",
           "items": { "type": "number" },
           "description": "List of stress values in direction 11 throughout the simulation.",
           "property": "Stress"
         },
-        "S22": {
+        "stress_22": {
           "type": "array",
           "items": { "type": "number" },
           "description": "List of stress values in direction 22 throughout the simulation.",
           "property": "Stress"
         },
-        "S33": {
+        "stress_33": {
           "type": "array",
           "items": { "type": "number" },
           "description": "List of stress values in direction 33 throughout the simulation.",
           "property": "Stress"
         },
-        "S12": {
+        "stress_12": {
           "type": "array",
           "items": { "type": "number" },
           "description": "List of stress values in direction 12 throughout the simulation.",
           "property": "Stress"
         },
-        "S13": {
+        "stress_13": {
           "type": "array",
           "items": { "type": "number" },
           "description": "List of stress values in direction 13 throughout the simulation.",
           "property": "Stress"
         },
-        "S23": {
+        "stress_23": {
           "type": "array",
           "items": { "type": "number" },
           "description": "List of stress values in direction 23 throughout the simulation.",
@@ -698,37 +698,37 @@
           "description": "List of equivalent strain values throughout the simulation.",
           "property": "Strain"
         },
-        "E11": {
+        "strain_11": {
           "type": "array",
           "items": { "type": "number" },
           "description": "List of total strain values in direction 11 throughout the simulation.",
           "property": "Strain"
         },
-        "E22": {
+        "strain_22": {
           "type": "array",
           "items": { "type": "number" },
           "description": "List of total strain values in direction 22 throughout the simulation.",
           "property": "Strain"
         },
-        "E33": {
+        "strain_33": {
           "type": "array",
           "items": { "type": "number" },
           "description": "List of total strain values in direction 33 throughout the simulation.",
           "property": "Strain"
         },
-        "E12": {
+        "strain_12": {
           "type": "array",
           "items": { "type": "number" },
           "description": "List of total strain values in direction 12 throughout the simulation.",
           "property": "Strain"
         },
-        "E13": {
+        "strain_13": {
           "type": "array",
           "items": { "type": "number" },
           "description": "List of total strain values in direction 13 throughout the simulation.",
           "property": "Strain"
         },
-        "E23": {
+        "strain_23": {
           "type": "array",
           "items": { "type": "number" },
           "description": "List of total strain values in direction 23 throughout the simulation.",
@@ -749,37 +749,37 @@
           "description": "List of equivalent plastic strain values throughout the simulation.",
           "property": "Strain"
         },
-        "Ep11": {
+        "plastic_strain_11": {
           "type": "array",
           "items": { "type": "number" },
           "description": "List of plastic strain values in direction 11 throughout the simulation.",
           "property": "Strain"
         },
-        "Ep22": {
+        "plastic_strain_22": {
           "type": "array",
           "items": { "type": "number" },
           "description": "List of plastic strain values in direction 22 throughout the simulation.",
           "property": "Strain"
         },
-        "Ep33": {
+        "plastic_strain_33": {
           "type": "array",
           "items": { "type": "number" },
           "description": "List of plastic strain values in direction 33 throughout the simulation.",
           "property": "Strain"
         },
-        "Ep12": {
+        "plastic_strain_12": {
           "type": "array",
           "items": { "type": "number" },
           "description": "List of plastic strain values in direction 12 throughout the simulation.",
           "property": "Strain"
         },
-        "Ep13": {
+        "plastic_strain_13": {
           "type": "array",
           "items": { "type": "number" },
           "description": "List of plastic strain values in direction 13 throughout the simulation.",
           "property": "Strain"
         },
-        "Ep23": {
+        "plastic_strain_23": {
           "type": "array",
           "items": { "type": "number" },
           "description": "List of plastic strain values in direction 23 throughout the simulation.",
