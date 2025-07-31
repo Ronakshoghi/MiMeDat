@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "https://github.com/Ronakshoghi/MetadataSchema/blob/main/microstructure_sensitive_mechanical_metadata_schema.json",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "object",
   "description": "A workflow-centric metadata schema for microstructure-sensitive mechanical data",
   "properties": {
@@ -331,71 +331,74 @@
     },
     "mechanical_BC": {
       "type": "array",
+
       "items": {
         "type": "object",
+
         "properties": {
           "vertex_list": {
             "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "A list includes vertex/vertices that describe a point, edge, or face."
+            "items": { "type": "string" },
+            "description": "Vertices describing a point (1), edge (2), face (4) or the full cube (8)."
           },
           "constraints": {
             "type": "array",
-            "items": {
-              "type": "string",
-              "enum": ["free", "fixed", "loaded"]
-            },
-            "description": "Defines the constraints for each direction (x, y, z) as either 'free', 'fixed', or 'loaded'."
+            "items": { "type": "string", "enum": ["free","fixed","loaded"] },
+            "description": "Boundary flags for x,y,z."
           },
           "loading_type": {
             "type": "string",
-            "enum": ["force", "displacement", "stress", "strain", "none"],
-            "description": "Define the type of load applied, which could be force, displacement, stress, or strain."
+            "enum": ["force","displacement","stress","strain","none"],
+            "description": "What is prescribed."
           },
           "loading_mode": {
             "type": "string",
-            "enum": ["static", "cyclic", "monotonic", "intermittent"],
-            "description": "Specify the nature of the loading condition with respect to time."
+            "enum": ["static","cyclic","monotonic","intermittent"],
+            "description": "Time‑dependence of the load."
           },
+
           "applied_load": {
             "type": "array",
             "items": {
               "type": "object",
               "properties": {
                 "magnitude": {
-                  "type": "number",
-                  "description": "The magnitude of the applied load."
+                  "description": "Scalar (force / displacement) **or** full tensor (stress / strain).",
+                  "oneOf": [
+                    { "type": "number" },
+                    {
+                      "type": "object",
+                      "description": "Full (non‑symmetric) 3×3 tensor; six Voigt terms required.",
+                      "properties": {
+                        "xx": { "type": "number" },
+                        "yy": { "type": "number" },
+                        "zz": { "type": "number" },
+                        "xy": { "type": "number" },
+                        "yx": { "type": "number" },
+                        "xz": { "type": "number" },
+                        "zx": { "type": "number" },
+                        "yz": { "type": "number" },
+                        "zy": { "type": "number" }
+                      },
+                      "required": ["xx","yy","zz","xy","yz","xz"],
+                      "additionalProperties": false
+                    }
+                  ]
                 },
-                "frequency": {
-                  "type": "number",
-                  "description": "The frequency of the applied load (optional).",
-                  "property": "Frequency"
-                },
-                "duration": {
-                  "type": "number",
-                  "description": "The duration of the applied load (optional).",
-                  "property": "Time"
-                },
-                "R": {
-                  "type": "number",
-                  "description": "Value for R relevant to the loading condition (optional)."
-                }
+                "frequency": { "type": "number", "property": "Frequency" },
+                "duration":  { "type": "number", "property": "Time" },
+                "R":         { "type": "number" },
+                "step":      { "type": "number" }
               },
               "required": ["magnitude"],
-              "description": "Contains the values of the applied load in the specified directions."
+              "additionalProperties": false
             }
           }
         },
-        "required": ["vertex_list", "constraints"],
-        "if": {
-          "properties": {
-            "loading_type": {
-              "const": "force"
-            }
-          }
-        },
+
+        "required": ["vertex_list","constraints"],
+
+        "if": { "properties": { "loading_type": { "const": "force" } } },
         "then": {
           "properties": {
             "applied_load": {
@@ -411,14 +414,9 @@
             }
           }
         },
+
         "else": {
-          "if": {
-            "properties": {
-              "loading_type": {
-                "const": "displacement"
-              }
-            }
-          },
+          "if": { "properties": { "loading_type": { "const": "displacement" } } },
           "then": {
             "properties": {
               "applied_load": {
@@ -433,58 +431,28 @@
                 }
               }
             }
+          }
+        },
+
+        "allOf": [{
+          "if": {
+            "required": ["loading_type"],
+            "properties": {
+              "loading_type": { "enum": ["stress","strain"] }
+            }
           },
-          "else": {
-            "if": {
-              "properties": {
-                "loading_type": {
-                  "const": "stress"
-                }
-              }
-            },
-            "then": {
-              "properties": {
-                "applied_load": {
-                  "items": {
-                    "properties": {
-                      "magnitude": {
-                        "type": "number",
-                        "description": "The magnitude of the applied stress.",
-                        "property": "Stress"
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "else": {
-              "if": {
-                "properties": {
-                  "loading_type": {
-                    "const": "strain"
-                  }
-                }
-              },
-              "then": {
-                "properties": {
-                  "applied_load": {
-                    "items": {
-                      "properties": {
-                        "magnitude": {
-                          "type": "number",
-                          "description": "The magnitude of the applied strain.",
-                          "property": "Strain"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
+          "then": {
+            "properties": {
+              "vertex_list": { "minItems": 8, "maxItems": 8, "uniqueItems": true },
+              "constraints": { "items": { "const": "loaded" },
+                               "minItems": 1, "maxItems": 1 },
+              "applied_load": { "items": {
+                "properties": { "magnitude": { "not": { "type": "number" } } }
+              }}
             }
           }
-        }
-      },
-      "description": "Defines mechanical boundary conditions including vertex lists, constraints, loading types, and applied loads."
+        }]
+      }
     },
     "thermal_BC": {
       "type": "array",
@@ -629,6 +597,19 @@
               "orientation_identifier": {
                 "type": "string",
                 "description": "Hash or identifier for the orientation."
+              },
+              "texture_extra_information": {
+                "description": "Optional additional texture data. Accepts either a free‑text note or any JSON object (dictionary) with arbitrary key‑value pairs.",
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "object",
+                    "minProperties": 1,
+                    "additionalProperties": true
+                  }
+                ]
               }
             },
             "required": ["euler_angles", "grain_count", "texture_type"],
