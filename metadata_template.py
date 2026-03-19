@@ -35,7 +35,7 @@ def create_hash(data, mandatory_fields):
     return hash
 
 Dict_Test = {
-    "$schema": "https://github.com/Ronakshoghi/MetadataSchema/blob/main/microstructure_sensitive_mechanical_metadata_schema.json",
+    "$schema": "https://github.com/Ronakshoghi/MiMeDat/blob/main/microstructure_sensitive_mechanical_metadata_schema.json",
     "identifier": "None",
     "title": None,
     "creator": [None],
@@ -106,8 +106,11 @@ Dict_Test = {
                            "duration": None}]
         }
     ],
-    "material": [{
-        "material_identifier": None,
+    "phase": [{
+        "phase_name": None,
+        "phase_id": None,
+        "volume_fraction": None,
+        "lattice_structure": None,
         "constitutive_model": {
             "schema": None,
             "elastic_model_name": None,
@@ -153,7 +156,7 @@ mandatory_fields = [
     "discretization_unit_size",
     "discretization_count",
     "mechanical_BC",
-    "material",
+    "phase",
     "stress",
     "total_strain",
     "units"
