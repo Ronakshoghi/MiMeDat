@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://github.com/Ronakshoghi/MiMeDat/blob/main/general_atomistic_constitutive_model_metadata_schema.json",
+  "version": "1.0.0",
+  "type": "object",
+  "description": "A flexible general schema for constitutive models in atomistic simulations, allowing optional interatomic potential, defect, and deformation models, with enforced element names. Units can be freely defined by the user.",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Reference to the schema used for this constitutive model."
+    },
+
+    "interatomic_potential_name": {
+      "type": ["string", "null"],
+      "description": "Name of the interatomic potential model."
+    },
+    "interatomic_potential_parameters": {
+      "type": "object",
+      "description": "Parameters defining the interatomic potential model.",
+      "properties": {},
+      "additionalProperties": true
+    },
+
+    "defect_model_name": {
+      "type": ["string", "null"],
+      "description": "Name of the defect model (e.g., 'Dislocation Mobility', 'Void Growth')."
+    },
+    "defect_parameters": {
+      "type": "object",
+      "description": "Parameters defining the defect model.",
+      "properties": {},
+      "additionalProperties": true
+    },
+
+    "deformation_model_name": {
+      "type": ["string", "null"],
+      "description": "Name of the deformation model (e.g., 'Fracture', 'Phase Transition')."
+    },
+    "deformation_parameters": {
+      "type": "object",
+      "description": "Parameters defining the deformation model.",
+      "properties": {},
+      "additionalProperties": true
+    }
+  },
+  "units": {
+    "type": "object",
+    "description": "Units for different physical properties, defined by the user.",
+    "properties": {},
+    "additionalProperties": true
+  },
+  "required": [],
+  "additionalProperties": true
+}

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "https://github.com/Ronakshoghi/MetadataSchema/blob/main/J2_plasticity_voce_hardening_constitutive_model_metadata_schema.json",
+  "$id": "https://github.com/Ronakshoghi/MiMeDat/blob/main/J2_plasticity_voce_hardening_constitutive_model_metadata_schema.json",
   "version": "1.0.0",
   "type": "object",
   "description": "Schema for J2 plasticity model with Voce hardening. Inherits from the general constitutive model schema.",
