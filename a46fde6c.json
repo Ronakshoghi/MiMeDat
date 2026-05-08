@@ -178,7 +178,7 @@
     ],
     "phase": [
         {
-            "phase_identifier": "Copper",
+            "phase_name": "Copper",
             "constitutive_model": {
                 "$schema": "https://raw.githubusercontent.com/Ronakshoghi/MetadataSchema/main/crystal_plasticity_constitutive_model_metadata_schema.json",
                 "elastic_model_name": "Anisotropic Elasticity",

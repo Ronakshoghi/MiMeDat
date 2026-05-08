@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "https://github.com/Ronakshoghi/MetadataSchema/blob/main/microstructure_sensitive_mechanical_metadata_schema.json",
+  "$id": "https://github.com/Ronakshoghi/MiMeDat/blob/main/microstructure_sensitive_mechanical_metadata_schema.json",
   "version": "1.2.0",
   "type": "object",
   "description": "A workflow-centric metadata schema for microstructure-sensitive mechanical data",
@@ -633,7 +633,7 @@
       }
     },
     "microstructure": {
-      "$ref": "https://github.com/YousefRezek/MicrostructureEvolutionDataSchema/blob/main/Microstructure_Module.json",
+      "$ref": "https://raw.githubusercontent.com/YousefRezek/MicrostructureEvolutionDataSchema/main/Microstructure_Module.json",
       "description": "The microstructure object is optional and can include any microstructure evolution data defined in the Microstructure Evolution Data Schema"
     },
     "stress": {
@@ -844,7 +844,7 @@
     "discretization_unit_size",
     "discretization_count",
     "mechanical_BC",
-    "material",
+    "phase",
     "stress",
     "total_strain",
     "units"
